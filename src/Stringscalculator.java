@@ -94,8 +94,6 @@ class Stringcalculator {
         }
         else if ((str[2]=='[')){
             List<String> characters = new ArrayList<>();
-            delimiters.add("\\n");
-            delimiters.add(",");
             int k = check_input(str);
             int i = 3;
             while (i<k){
@@ -125,9 +123,37 @@ class Stringcalculator {
                 }
                 i++;
             }
+            sort(delimiters);
             return  delimiters;
         }
         return Arrays.asList("\\n", ",");
+    }
+
+    private void sort(List<String> s){
+
+        String[] delims = new String[s.size()];
+
+        for (int k = 0 ; k< delims.length; k++){
+            delims[k] = s.get(k);
+        }
+
+        for (int i=1 ;i<delims.length; i++)
+        {
+            String temp = delims[i];
+            // [**] [***]
+            // Insert s[j] at its correct position
+            int j = i - 1;
+            while (j >= 0 && temp.length() > delims[j].length())
+            {
+                delims[j+1] = delims[j];
+                j--;
+            }
+            delims[j+1] = temp;
+        }
+        s.clear();
+        s.add("\\n");
+        s.add(",");
+        s.addAll(Arrays.asList(delims));
     }
 
     private void check_delimiters(String string) throws Exception{
