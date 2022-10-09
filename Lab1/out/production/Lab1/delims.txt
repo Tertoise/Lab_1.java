@@ -1,0 +1,17 @@
+                while (m.find()){
+                    char[] dels = delimiters.get(j+1).toCharArray();
+                    num = string.substring(get_index(string));
+                    if ((m.end()+delimiters.get(j+1).length())>num.length()) continue;
+                    num = num.substring(m.end(), m.end()+delimiters.get(j+1).length());
+                    int k = 0;
+                    for (int i = 0; i < dels.length; i++){
+                        if (num.charAt(i) == dels[i]){
+                            k = 1;
+                        } else break;
+                    }
+                    if (k == 1 ){
+                        g = 1;
+                        break;
+                    }
+                }
+if (g==1) throw new Exception("Not allowed to double delimiters");
